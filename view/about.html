@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://v3.bootcss.com/examples/offcanvas/# -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+
+    <title>Ablog Post</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./static/css/offcanvas.css" rel="stylesheet">
+
+</head>
+
+<body>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./post.php">ABlog</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="./post.php">Home</a></li>
+                <li><a href="./createpost.php">CreatePost</a></li>
+                <li><a href="./edit.php">Edit</a></li>
+                <li><a href="./about.php">About</a></li>
+                <li><a href="./logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>
+            <div class="jumbotron">
+                <h1>Hello, <?php echo $username;?>!</h1>
+                <p>
+                    Welcome Write
+                    You blog
+                </p>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-8 blog-main">
+                    <form class="form-signin" method="post">
+                        <?php foreach($user_about_data as $key=>$value):?>
+                        <div class="blog-post">
+                            <h2 class="blog-post-title"><a href="./browsepost.php?id=<?php echo $value['id'];?>"><?php echo $value['title'];?></a></h2>
+                            <p class="blog-post-meta"><?php echo $value['time'];?> <a href="./edit.php"><?php echo $value['author'];?></a></p>
+                            <!--<p>-->
+                                <!--<?php echo $value['post'];?>-->
+                            <!--</p>-->
+                        </div>
+                        <a href="./editpost.php?id=<?php echo $value['id'];?>" class="btn btn-success">Edit</a>
+                        <a href="./delete.php?id=<?php echo $value['id'];?>" class="btn btn-danger">Delete</a>
+                        <?php endforeach; ?>
+                    </form>
+
+                    <!--分页-->
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li><a href="#">Previous</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
+                    </nav>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+
+
+            <div class="list-group">
+                <h4>Recommended links</h4>
+                <a href="https://www.baidu.com" class="list-group-item active">百度</a>
+                <a href="https://www.github.com" class="list-group-item">Github</a>
+                <a href="www.zhihu.com" class="list-group-item">知乎</a>
+                <a href="https://juejin.im/" class="list-group-item">掘金</a>
+                <a href="https://www.bilibili.com" class="list-group-item">bilibili</a>
+            </div>
+
+
+            <div class="sidebar-module">
+                <h4><a href="./archives.php?id=<?php echo $userid;?>">Archives</a></h4>
+                <ol class="list-unstyled">
+                    <?php foreach($user_archives_data as $value):?>
+                    <li><a href="<?php echo $value['content']?>"><?php echo $value['name']?></a></li>
+                    <?php endforeach;?>
+                </ol>
+            </div>
+            <div class="sidebar-module">
+                <h4>Blog System Author </h4>
+                <ol class="list-unstyled">
+                    <li><a href="asolmn.github.io">GitHub</a></li>
+                </ol>
+            </div>
+            <!-- /.blog-sidebar -->
+
+        </div><!--/.sidebar-offcanvas-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+        <p>Welcome ABlog</p>
+    </footer>
+
+</div><!--/.container-->
+
+
+
+
+
+</body></html>
